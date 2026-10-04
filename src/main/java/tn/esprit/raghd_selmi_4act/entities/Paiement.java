@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"contrat"})
 public class Paiement {
 
     @Id
@@ -27,4 +29,9 @@ public class Paiement {
     @Enumerated(EnumType.STRING)
     @Column(name = "mode_paiement")
     private ModePaiement modePaiement;
+
+    // Cote proprietaire : plusieurs Paiement appartiennent a un Contrat
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_contrat")
+    private Contrat contrat;
 }

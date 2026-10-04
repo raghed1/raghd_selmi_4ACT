@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "employe")
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"agence"})
 public class Employe {
 
     @Id
@@ -24,4 +26,9 @@ public class Employe {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private RoleEmploye role;
+
+    // Cote proprietaire : plusieurs Employe appartiennent a une Agence
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
 }

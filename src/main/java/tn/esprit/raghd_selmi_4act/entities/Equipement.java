@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "equipement")
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"vehicule"})
 public class Equipement {
 
     @Id
@@ -19,4 +21,9 @@ public class Equipement {
     private Long idEquipement;
 
     private String libelle;
+
+    // Cote proprietaire : plusieurs Equipement appartiennent a un Vehicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vehicule")
+    private Vehicule vehicule;
 }
