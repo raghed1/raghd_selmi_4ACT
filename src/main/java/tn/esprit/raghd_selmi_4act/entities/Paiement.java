@@ -23,15 +23,17 @@ public class Paiement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPaiement;
 
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal montant;
+    @Column(nullable = false)
     private LocalDate datePaiement;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "mode_paiement")
+    @Column(name = "mode_paiement", nullable = false, length = 20)
     private ModePaiement modePaiement;
 
     // Cote proprietaire : plusieurs Paiement appartiennent a un Contrat
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_contrat")
+    @JoinColumn(name = "id_contrat", nullable = false)
     private Contrat contrat;
 }

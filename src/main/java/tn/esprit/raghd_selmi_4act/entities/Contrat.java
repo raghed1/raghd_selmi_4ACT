@@ -25,8 +25,11 @@ public class Contrat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContrat;
 
+    @Column(nullable = false)
     private LocalDate dateSignature;
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal montantTotal;
+    @Column(nullable = false)
     private boolean valide;
 
     // Cote proprietaire : un Contrat correspond a une seule Reservation

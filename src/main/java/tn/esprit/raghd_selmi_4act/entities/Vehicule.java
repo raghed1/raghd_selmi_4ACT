@@ -24,18 +24,22 @@ public class Vehicule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVehicule;
 
+    @Column(nullable = false, unique = true, length = 20)
     private String immatriculation;
+    @Column(nullable = false, length = 50)
     private String marque;
+    @Column(nullable = false, length = 50)
     private String modele;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "categorie")
+    @Column(name = "categorie", nullable = false, length = 20)
     private CategorieVehicule categorie;
 
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal tarifJournalier;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "statut")
+    @Column(name = "statut", nullable = false, length = 20)
     private StatutVehicule statut;
 
     // Cote proprietaire : plusieurs Vehicule appartiennent a une Agence
@@ -47,8 +51,14 @@ public class Vehicule {
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Maintenance> maintenances = new ArrayList<>();
 
-    // Cote inverse : un Vehicule a plusieurs Equipement
-    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL)
+    // ManyToMany : un Vehicule a plusieurs Equipement et inversement.
+    // Vehicule est le cote proprietaire : il definit la table de jointure.
+    @ManyToMany
+    @JoinTable(
+            name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "id_vehicule"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipement")
+    )
     private List<Equipement> equipements = new ArrayList<>();
 
     // Cote inverse : un Vehicule a plusieurs Reservation

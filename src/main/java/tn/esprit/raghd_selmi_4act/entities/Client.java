@@ -24,11 +24,17 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idClient;
 
+    @Column(nullable = false, length = 50)
     private String nom;
+    @Column(nullable = false, length = 50)
     private String prenom;
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
+    @Column(nullable = false, length = 20)
     private String telephone;
+    @Column(nullable = false, unique = true, length = 30)
     private String numPermis;
+    @Column(nullable = false)
     private LocalDate dateInscription;
 
     // Cote inverse : un Client fait plusieurs Reservation

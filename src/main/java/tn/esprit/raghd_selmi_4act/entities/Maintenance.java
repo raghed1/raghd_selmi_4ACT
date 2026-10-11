@@ -22,8 +22,11 @@ public class Maintenance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMaintenance;
 
+    @Column(nullable = false)
     private LocalDate dateDebut;
+    @Column(nullable = false)
     private LocalDate dateFin;
+    @Column(nullable = false, length = 500)
     private String description;
 
     // Cote proprietaire : plusieurs Maintenance appartiennent a un Vehicule

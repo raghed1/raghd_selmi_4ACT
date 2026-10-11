@@ -7,23 +7,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "equipement")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"vehicule"})
+@ToString(exclude = {"vehicules"})
 public class Equipement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquipement;
 
+    @Column(nullable = false, length = 100)
     private String libelle;
 
-    // Cote proprietaire : plusieurs Equipement appartiennent a un Vehicule
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_vehicule")
-    private Vehicule vehicule;
+    // Cote inverse du ManyToMany : la table de jointure est definie dans Vehicule
+    @ManyToMany(mappedBy = "equipements")
+    private List<Vehicule> vehicules = new ArrayList<>();
 }

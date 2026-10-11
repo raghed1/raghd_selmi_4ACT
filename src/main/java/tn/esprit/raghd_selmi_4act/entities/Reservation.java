@@ -22,11 +22,13 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
 
+    @Column(nullable = false)
     private LocalDate dateDebut;
+    @Column(nullable = false)
     private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "statut")
+    @Column(name = "statut", nullable = false, length = 20)
     private StatutReservation statut;
 
     // Cote proprietaire : plusieurs Reservation portent sur un Vehicule
