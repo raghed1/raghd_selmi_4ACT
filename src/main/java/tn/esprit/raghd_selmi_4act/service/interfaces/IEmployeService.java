@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IEmployeService {
 
-    Employe addEmploye(Employe entity);
-
-    Employe updateEmploye(Employe entity);
-
     List<Employe> retrieveAllEmployes();
 
     Employe retrieveEmploye(Long id);
+
+    Employe addEmploye(Employe entity);
+
+    Employe modifyEmploye(Employe entity);
 
     void removeEmploye(Long id);
 }

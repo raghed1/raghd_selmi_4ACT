@@ -17,16 +17,6 @@ public class VehiculeServiceImpl implements IVehiculeService {
     private final VehiculeRepository repository;
 
     @Override
-    public Vehicule addVehicule(Vehicule entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Vehicule updateVehicule(Vehicule entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Vehicule> retrieveAllVehicules() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class VehiculeServiceImpl implements IVehiculeService {
     public Vehicule retrieveVehicule(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Vehicule not found with id " + id));
+    }
+
+    @Override
+    public Vehicule addVehicule(Vehicule entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Vehicule modifyVehicule(Vehicule entity) {
+        return repository.save(entity);
     }
 
     @Override

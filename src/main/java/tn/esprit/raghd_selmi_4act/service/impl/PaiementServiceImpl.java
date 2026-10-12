@@ -17,16 +17,6 @@ public class PaiementServiceImpl implements IPaiementService {
     private final PaiementRepository repository;
 
     @Override
-    public Paiement addPaiement(Paiement entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Paiement updatePaiement(Paiement entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Paiement> retrieveAllPaiements() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class PaiementServiceImpl implements IPaiementService {
     public Paiement retrievePaiement(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Paiement not found with id " + id));
+    }
+
+    @Override
+    public Paiement addPaiement(Paiement entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Paiement modifyPaiement(Paiement entity) {
+        return repository.save(entity);
     }
 
     @Override

@@ -17,16 +17,6 @@ public class AgenceServiceImpl implements IAgenceService {
     private final AgenceRepository repository;
 
     @Override
-    public Agence addAgence(Agence entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Agence updateAgence(Agence entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Agence> retrieveAllAgences() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class AgenceServiceImpl implements IAgenceService {
     public Agence retrieveAgence(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Agence not found with id " + id));
+    }
+
+    @Override
+    public Agence addAgence(Agence entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Agence modifyAgence(Agence entity) {
+        return repository.save(entity);
     }
 
     @Override

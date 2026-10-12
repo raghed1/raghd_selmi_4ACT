@@ -17,16 +17,6 @@ public class ClientServiceImpl implements IClientService {
     private final ClientRepository repository;
 
     @Override
-    public Client addClient(Client entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Client updateClient(Client entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Client> retrieveAllClients() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class ClientServiceImpl implements IClientService {
     public Client retrieveClient(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Client not found with id " + id));
+    }
+
+    @Override
+    public Client addClient(Client entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Client modifyClient(Client entity) {
+        return repository.save(entity);
     }
 
     @Override

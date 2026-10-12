@@ -17,16 +17,6 @@ public class ContratServiceImpl implements IContratService {
     private final ContratRepository repository;
 
     @Override
-    public Contrat addContrat(Contrat entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Contrat updateContrat(Contrat entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Contrat> retrieveAllContrats() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class ContratServiceImpl implements IContratService {
     public Contrat retrieveContrat(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Contrat not found with id " + id));
+    }
+
+    @Override
+    public Contrat addContrat(Contrat entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Contrat modifyContrat(Contrat entity) {
+        return repository.save(entity);
     }
 
     @Override

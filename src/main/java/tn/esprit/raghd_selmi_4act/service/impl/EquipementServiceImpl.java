@@ -17,16 +17,6 @@ public class EquipementServiceImpl implements IEquipementService {
     private final EquipementRepository repository;
 
     @Override
-    public Equipement addEquipement(Equipement entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Equipement updateEquipement(Equipement entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Equipement> retrieveAllEquipements() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class EquipementServiceImpl implements IEquipementService {
     public Equipement retrieveEquipement(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Equipement not found with id " + id));
+    }
+
+    @Override
+    public Equipement addEquipement(Equipement entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Equipement modifyEquipement(Equipement entity) {
+        return repository.save(entity);
     }
 
     @Override

@@ -17,16 +17,6 @@ public class MaintenanceServiceImpl implements IMaintenanceService {
     private final MaintenanceRepository repository;
 
     @Override
-    public Maintenance addMaintenance(Maintenance entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Maintenance updateMaintenance(Maintenance entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Maintenance> retrieveAllMaintenances() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class MaintenanceServiceImpl implements IMaintenanceService {
     public Maintenance retrieveMaintenance(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Maintenance not found with id " + id));
+    }
+
+    @Override
+    public Maintenance addMaintenance(Maintenance entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Maintenance modifyMaintenance(Maintenance entity) {
+        return repository.save(entity);
     }
 
     @Override

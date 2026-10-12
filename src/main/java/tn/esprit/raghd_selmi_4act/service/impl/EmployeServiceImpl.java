@@ -17,16 +17,6 @@ public class EmployeServiceImpl implements IEmployeService {
     private final EmployeRepository repository;
 
     @Override
-    public Employe addEmploye(Employe entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Employe updateEmploye(Employe entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Employe> retrieveAllEmployes() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class EmployeServiceImpl implements IEmployeService {
     public Employe retrieveEmploye(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Employe not found with id " + id));
+    }
+
+    @Override
+    public Employe addEmploye(Employe entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Employe modifyEmploye(Employe entity) {
+        return repository.save(entity);
     }
 
     @Override

@@ -17,16 +17,6 @@ public class ReservationServiceImpl implements IReservationService {
     private final ReservationRepository repository;
 
     @Override
-    public Reservation addReservation(Reservation entity) {
-        return repository.save(entity);
-    }
-
-    @Override
-    public Reservation updateReservation(Reservation entity) {
-        return repository.save(entity);
-    }
-
-    @Override
     public List<Reservation> retrieveAllReservations() {
         return repository.findAll();
     }
@@ -35,6 +25,16 @@ public class ReservationServiceImpl implements IReservationService {
     public Reservation retrieveReservation(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Reservation not found with id " + id));
+    }
+
+    @Override
+    public Reservation addReservation(Reservation entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Reservation modifyReservation(Reservation entity) {
+        return repository.save(entity);
     }
 
     @Override
